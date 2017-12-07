@@ -62,7 +62,7 @@ CREATE TABLE usuario(
 
   userID INT unsigned AUTO_INCREMENT NOT NULL,
   nombre_usuario VARCHAR(35) NOT NULL, 
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(128) NOT NULL,
 
   CONSTRAINT pk_usuario PRIMARY KEY (userID)
 
@@ -140,12 +140,19 @@ delimiter ;
 -- Volcado de datos para las tablas de entidades
 --
 
-INSERT INTO usuario (userID,nombre_usuario,password) VALUES
-(1, 'usuario', 'usuario'),
-(2, 'JuanPerez', 'Fernández'),
-(3, 'Vicente', 'Juarez'),
-(4, 'Karina', 'Kunt');
+INSERT INTO `pelicula` (`id_pelicula`, `nombre_pelicula`, `fecha_estreno`, `tiempo_duracion`, `calificacion_promedio`, `sinopsis`, `imagen_poster`) VALUES
+(2, 'Ironman 3', '2013-04-26', 130, '0.0', 'Cuando el mundo de Tony Stark es destrozado por un temible terrorista llamado Mandarin, comienza una odisea de reconstrucciÃ³n y castigo.', 'https://i.pinimg.com/originals/9e/e9/7c/9ee97ca32deecd3b7465665ba3494f7f.jpg'),
+(3, 'Matrix', '1999-06-23', 136, '0.0', 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 'https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UY1200_CR84,0,630,1200_AL_.jpg');
 
+
+#buscar clave encriptada del usuario
+#$salt = '34a@$#aA9823$'; semilla - valor fijo
+#$hash = hash('sha512', $salt.$psw); devuelve 128 caracteres
+# $hash contine la clave encriptada 
+
+INSERT INTO usuario (userID,nombre_usuario,password) VALUES
+(0, 'admin', 'admin'),
+(1, 'usuario','usuario'),
 
 INSERT INTO genero (id_genero,nombre_genero) VALUES
 (1, 'Drama'),
@@ -159,7 +166,20 @@ INSERT INTO genero (id_genero,nombre_genero) VALUES
 (9, 'Western'),
 (10, 'Documental');
 
+
+
+INSERT INTO califica (userID, id_pelicula, puntaje) VALUES
+(1, 2, 4),
+(1, 3, 5),
+(0, 2, 3),
+(0, 2, 4);
+
+INSERT INTO tiene (id_pelicula, id_genero) VALUES
+(2,3),
+(3,6);
+
 /*
+
 INSERT INTO actor (`legajo`, `pers_id`, `cargo_id`, `fechaingreso`) VALUES
 (1234, 1, 1, '2015-11-01'),
 (45631, 2, 2, '2015-01-01');
@@ -185,17 +205,9 @@ INSERT INTO reparto (id, id_actor, rol) VALUES
 (3, 'Técnico');
 
 
-INSERT INTO califica (userID, id, puntaje) VALUES
-(1234, 1, 1, '2015-11-01'),
-(45631, 2, 2, '2015-01-01');
-
 
 INSERT INTO dirigida_por (id_director, id) VALUES
 (1234, 1, 1, '2015-11-01'),
 (45631, 2, 2, '2015-01-01');
 
-
-INSERT INTO tiene (id, nombre_genero) VALUES
-(1234, 1, 1, '2015-11-01'),
-(45631, 2, 2, '2015-01-01');
 */

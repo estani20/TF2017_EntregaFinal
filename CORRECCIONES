@@ -1,0 +1,49 @@
+Falta bastante para que este completo, la correcion la pueden entrgar el fin de semana, tengan en cuenta de ir haciendolo antes por si surgen dudas.
+	
+	1 - Usar referencia relativas al sitio, por ej. sacar direcciones absolutas, ej:  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+		- las referencia en la pagian no es necesario hacerlo con ./, si eso funciona, ej. movie-form.php?id_pelicula=2 ( no ./movie-form.php?id_pelicula=2)
+	
+	2 - para las consultas a la BD tienen que usar la clase PDO, no mysqli (leer pautas del proyecto)
+		hagan un nuevo include con conexion PDO a la base, para usarla en lo que tengan que arreglar o modificar (el resto del sitio lo cambian a la nueva conexión si tienen tiempo)
+	
+	3 - psw -> $pass = md5($p); - no usar ese algoritmo-no se recomienda, usar el que di en clase (está en los apuntes) - el campo de password tiene que ser de 128 caracteres.
+	
+	4 - ABM pelicula	
+	 - una pelicula puede tener varios generos,  el sistema deja agregar uno solo.
+		- dejar que se elijan varios generos (una opcion es con select multiple, recordar que en el name de select van corchetes - ej. name="generos[]" )
+		- Agregar actores y directores (hacer si tienen tiempo)
+		-  poster 
+			NO usar direcciones absolutas - https://images-na.ssl-images-amazon.com/images/M/M...
+			campo donde pide ingresar url -> sacar restricción url
+			a - podría usarse un input de tipo file, luego la imagen subida guardarla en una carpeta en el sitio (por ej. posters/) 
+			b - guarden la ruta de la imagen (si no sale el punto a),ejemplo posters/imagen1.jpg 
+			- guardan las imagenes en una carpeta en el sitio (ej: poster/poster1.jpg) -- puede tener ese nombre la pelicu o ustedes la renombran con un nombre en general.	
+			- en la BD - guardan la ruta relativa: poster/poster1.jpg
+	
+	Genero 
+		- no deja borrar un genero que se esta usando, lo cual esta bien,  debería avisar que no se puede borrar o el icono de borrar estar deshabilitado
+		
+	5 - Como es el sistema de calificar??
+		- solo se puede poner un numero entero de 1 a 5?
+		- puse un numero y no cambia el valor o deja uno fijo, no funciona
+		- con calificar una pelicula, las restantes tienen el mismo puntaje.
+		- agregue dos usuario mas y puse calificacion, no se refleja el calculo.
+
+	6 - Validaciones	
+	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que se anumero, que tenga longitud valida)
+	- El alta de pelicula se realiza en index, porque?, no sería necesario, siempre tratar de separar funcioanlemnte, el alta de pelicula tendría que ir con el formualrio de pelicula o un archivo a parte. 
+	
+    - $rs -- cada vez que se ejecuta una consulta, hay que verificar si esta vacio o no, no usarlo en forma directa.
+	- cuando no se utiliza mas, hay que cerrar el $rs
+  	- Ej. sin validar datos PHP
+		$n_poster = $_POST['inputPoster'];  no se pregunta si esta seteado, ni que clase de valor puede tener.
+		
+		
+    7 - Hacer reporte/consulta
+	Realizar una reporte de peliculas agrupadas por genero, que tenga subtotal de peliculas por genero y total de peliculas
+	filtro: por genero (select - todos los generos o uno en particular) y por duracion
+	orden : por calificacion o por titulo 
+	exportar a excel- datos sin agrupar y sin totales
+	print -  vista de impresion, con diferente estilo (el mismo archivo, modificado por estilos cuando se imprime)
+	
+	- fecha - mostrar en forma dd/mm/aaaa (se guarda en la bd a/m/d y se muestra al usuario d/m/a)
