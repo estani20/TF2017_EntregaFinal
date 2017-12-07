@@ -65,8 +65,8 @@ EOT;
 	<meta name="keywords" content="palabraclave1,palabraclave2,palabraclave3">
 	<meta name="robots" content="index,nofollow" >
 	
-	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
 
 	
@@ -168,7 +168,11 @@ EOT;
 
 	<div class="container">
 		<div class="card card-container pt-4">
+<<<<<<< HEAD
 			<a href="./director-form.php" class="btn btn-success mb-2">Agregar director</a>
+=======
+			<a href="director-form.php" class="btn btn-success mb-2">Agregar director</a>
+>>>>>>> Eliminados enlaces absolutos
 			<table class="table table-striped">
 				<thead class="thead thead-dark">
 					<th>Nombre</th>

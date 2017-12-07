@@ -109,11 +109,11 @@ generar_menu($menu_ppal,1);
 	<meta name="keywords" content="palabraclave1,palabraclave2,palabraclave3">
 	<meta name="robots" content="index,nofollow" >
 	
-	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
 
-	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 
 	<!-- Script para mostrar un diálogo de confirmación al intentar eliminar -->
 	<script language="JavaScript" type="text/javascript">

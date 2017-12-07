@@ -36,8 +36,9 @@ generar_menu($menu_ppal,1);
 <html>
 <head>
 	<title><?php echo $actionTitle ?> género</title>
-	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	
 <title><?php echo $actionTitle ?> género</title>
 </head>
