@@ -10,7 +10,7 @@
   <html lang="en">
   <?php 
 
-  require 'inc/conn.php';
+  require 'inc/coneccion.php';
 
     include_once("navbar.php"); 
     //include_once("pie.php"); 
@@ -26,11 +26,9 @@
     <meta charset="utf-8">
     <title>Catálogo de películas - Iniciar sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="ionicons/2.0.1/css/ionicons.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
   <div id="encab">
@@ -48,7 +46,7 @@
       <button class="btn btn-lg btn-primary btn-block btn-submit" type="submit">Iniciar sesión</button>
     </form><!-- /form -->
 
-    <p>No tienes cuenta?<a href="signup.php" class="forgot-password">
+    <p>No tienes cuenta?<a href="./signup.php" class="forgot-password">
       Crea una nueva
     </a></p>
 

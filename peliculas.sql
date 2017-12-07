@@ -178,6 +178,7 @@ INSERT INTO tiene (id_pelicula, id_genero) VALUES
 (2,3),
 (3,6);
 
+
 /*
 
 INSERT INTO actor (`legajo`, `pers_id`, `cargo_id`, `fechaingreso`) VALUES
