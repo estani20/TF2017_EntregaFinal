@@ -61,10 +61,10 @@
 	<meta name="keywords" content="palabraclave1,palabraclave2,palabraclave3">
 	<meta name="robots" content="index,nofollow" >
 	
-	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
-	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 
 	<!-- Script para mostrar un diálogo de confirmación al intentar eliminar -->
 	<script language="JavaScript" type="text/javascript">
@@ -85,7 +85,7 @@
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
 				if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
-	        		echo '<a href="./genre-form.php" class="btn btn-success mb-2">Agregar género</a>';
+	        		echo '<a href="genre-form.php" class="btn btn-success mb-2">Agregar género</a>';
 				} 
 			?>
 
@@ -103,9 +103,8 @@
 					$actionAdmin = $actionCommon = "";
 					
 					foreach($rs as $fila) {
-
-						$actionAdmin = "<a href='./genre-form.php?id_genero={$fila['id_genero']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a>".
-						"<a href='./genre-list.php?id_genero={$fila['id_genero']}' onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
+						$actionAdmin = "<a href='genre-form.php?id_genero={$fila['id_genero']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a>".
+						"<a href='genre-list.php?id_genero={$fila['id_genero']}' onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
 	
 						$actionCommon = "<span>No disponible</span>";
 	

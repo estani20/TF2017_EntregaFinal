@@ -8,8 +8,8 @@ generar_menu($menu_ppal,1);
 <html>
 <head>
 	<title>Agregar película</title>
-	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	
 <title>Agregar director</title>
 </head>
