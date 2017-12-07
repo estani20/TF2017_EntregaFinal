@@ -1,0 +1,8 @@
+TO DO:
+add movie (agregar a tiene el genero)
+codificar passwords en md5
+mostrar bien las calificaciones
+filtrar por algun parametro (calificacion / fecha de estreno)
+(opcional) abm usuarios
+Exportar para imprimir
+Exportar en formato excel
