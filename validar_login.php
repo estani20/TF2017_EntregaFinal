@@ -24,15 +24,17 @@
       # $usuarios = $db->
 
   #if($usuarios->num_rows == 1):
-  if($rs)  
+  if($rs){
     #$datos = $usuarios->fetch_assoc();
     $datos = $rs['nombre_usuario'];
     $_SESSION['usuario'] = $datos;
     echo json_encode(array('error' => false, $datos));
     header("location:index.php");
-  else:
-    header("location:login.php");
-  endif;
+    }
+  else
+    {
+      header("location:login.php");
+    }
 
   $mysqli->close();
 
