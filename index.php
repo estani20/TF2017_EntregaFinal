@@ -2,7 +2,7 @@
 <html lang="es">
 <?php
 
-require 'inc/conn.php';  #crea la conexión a la BD
+require 'inc/coneccion.php';  #crea la conexión a la BD
 
 include_once("navbar.php"); 
 
@@ -47,6 +47,9 @@ generar_menu($menu_ppal,1);
 		$n_genero = $_POST['inputGenero'];
 		$n_poster = $_POST['inputPoster'];
 	
+	$sql = 
+
+
 		$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
 
 

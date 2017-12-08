@@ -14,16 +14,22 @@
   $hash = hash('sha512', $salt.$p); //devuelve 128 caracteres
 # $hash contine la clave encriptada 
 
-  $usuarios = $mysqli->query("SELECT * FROM usuario u WHERE u.nombre_usuario='$u' AND u.password='$hash'");
+  $sql = "SELECT * 
+          FROM usuario u 
+          WHERE u.nombre_usuario='$u' AND u.password='$hash';
+          ";
 
-  if($usuarios->num_rows == 1):
-    
-    $datos = $usuarios->fetch_assoc();
+        $rs = $db->query($sql)->fetch();
+      
+      # $usuarios = $db->
+
+  #if($usuarios->num_rows == 1):
+  if($rs)  
+    #$datos = $usuarios->fetch_assoc();
+    $datos = $rs['nombre_usuario'];
     $_SESSION['usuario'] = $datos;
-
-    echo json_encode(array('error' => false, $datos['nombre_usuario']));
+    echo json_encode(array('error' => false, $datos));
     header("location:index.php");
-
   else:
     header("location:login.php");
   endif;

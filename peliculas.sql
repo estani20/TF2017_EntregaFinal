@@ -152,7 +152,7 @@ INSERT INTO `pelicula` (`id_pelicula`, `nombre_pelicula`, `fecha_estreno`, `tiem
 
 INSERT INTO usuario (userID,nombre_usuario,password) VALUES
 (0, 'admin', 'admin'),
-(1, 'usuario','usuario'),
+(1, 'usuario','usuario');
 
 INSERT INTO genero (id_genero,nombre_genero) VALUES
 (1, 'Drama'),
@@ -172,7 +172,7 @@ INSERT INTO califica (userID, id_pelicula, puntaje) VALUES
 (1, 2, 4),
 (1, 3, 5),
 (0, 2, 3),
-(0, 2, 4);
+(0, 3, 4);
 
 INSERT INTO tiene (id_pelicula, id_genero) VALUES
 (2,3),
