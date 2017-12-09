@@ -14,6 +14,7 @@
 	// Inicializo vacíos los parámetros
 	$id = '';
 	$nuevoGenero = '';
+	$error = '';
 
 	// Seteo los valores a los atributos del género dependiendo de los parámetros recibidos
 	if(isset($_POST['id_genero'])){
@@ -48,6 +49,12 @@
 		$id = $_GET['id_genero'];
 	
 		$rs = $mysqli->query("DELETE FROM genero WHERE id_genero = '".$id."';");
+		if($rs==false){
+   		   $error =  '<div class="alert alert-danger mt-3  mr-5 ml-5" >
+						<span>No se puede eliminar un género que tenga películas asociadas</span>
+					</div>';
+   		}
+
 	}
 
 
@@ -76,12 +83,16 @@
 </head>
  
 <body>
+
 	<div id="encab">
 		<?=$menu_ppal?>
 	</div>
+	<?php echo $error; ?>
+	
 
 	<div class="container">
 		<div class="card card-container pt-4">
+
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
 				if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
