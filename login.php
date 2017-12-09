@@ -19,6 +19,13 @@
     //generar_tit($tit);
     generar_menu($menu_ppal,1);
     generar_breadcrumbs($camino_nav,0,"Listado"); 
+    $error = '';
+
+    if(isset($_GET['error']) && $_GET['error'] == 1){
+       $error =  '<div class="alert alert-danger mt-3  mr-5 ml-5" >
+            <span>Nombre de usuario / contraseña incorrectos</span>
+          </div>';
+    }
 
 ?>
 
@@ -34,6 +41,7 @@
   <div id="encab">
     <?=$menu_ppal?>
   </div>
+  <?php echo $error; ?>
   <div class="container">
     <div class="card card-container" id="logincard">
      <h1 class="card-title text-center">Iniciar sesión</h1>

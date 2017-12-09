@@ -19,9 +19,6 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 		
 	5 - Como es el sistema de calificar??
 		- solo se puede poner un numero entero de 1 a 5?
-		- puse un numero y no cambia el valor o deja uno fijo, no funciona
-		- con calificar una pelicula, las restantes tienen el mismo puntaje.
-		- agregue dos usuario mas y puse calificacion, no se refleja el calculo.
 
 	6 - Validaciones	
 	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que se anumero, que tenga longitud valida)

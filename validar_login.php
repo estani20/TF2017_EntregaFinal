@@ -20,7 +20,7 @@
     header("location:index.php");
 
   else:
-    header("location:login.php");
+    header("location:login.php?error=1");
   endif;
 
   $mysqli->close();
