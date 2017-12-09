@@ -120,8 +120,8 @@ generar_menu($menu_ppal,1);
 
 					foreach($rs as $fila) {
 						// Template para la columna de acción del usuario admin
-						$actionAdmin = "<a href='./movie-form.php?id_pelicula={$fila['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
-								<a href='./index.php?id_pelicula={$fila['id_pelicula']}'  onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
+						$actionAdmin = "<a href='movie-form.php?id_pelicula={$fila['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
+								<a href='index.php?id_pelicula={$fila['id_pelicula']}'  onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
 
 						// Template para la columna de acción del usuario común
 						$actionUser = "<div><form class='form-submit' method='post' action='index.php'><input type='hidden' name='inputIdCalif' value={$fila['id_pelicula']}></input><input type='number' name='inputCalif' min='1' max='5' size='1' value='3' required/><i class='fa fa-star'></span></i><button type='submit' class='btn btn-lg btn-primary btn-block btn-submit mt-2'>Calificar</button></form></div>";

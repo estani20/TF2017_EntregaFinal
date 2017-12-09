@@ -169,7 +169,7 @@ EOT;
 	<div class="container">
 		<div class="card card-container pt-4">
 <<<<<<< HEAD
-			<a href="./director-form.php" class="btn btn-success mb-2">Agregar director</a>
+			<a href="director-form.php" class="btn btn-success mb-2">Agregar director</a>
 =======
 			<a href="director-form.php" class="btn btn-success mb-2">Agregar director</a>
 >>>>>>> Eliminados enlaces absolutos

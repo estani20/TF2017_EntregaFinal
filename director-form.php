@@ -35,8 +35,8 @@ if (isset($_GET['id_pelicula'])){
 <html>
 <head>
 	<title><?php echo $actionTitle ?> película</title>
-	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 	<div id="encab">

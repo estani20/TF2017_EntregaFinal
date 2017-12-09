@@ -1,5 +1,5 @@
 <?php
-	session_name("sesion_tesla");
+	session_name("sesion");
 	# iniciar o reanuda la sesión
 	session_start();	
 	
