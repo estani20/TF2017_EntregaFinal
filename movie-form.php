@@ -80,7 +80,7 @@ if (isset($_GET['id_pelicula'])){
 					?>
 				</select>
 				<label>Póster</label>
-				<input type="url" name="inputPoster" class="form-control" value="<?php echo (isset($imagen_poster))?$imagen_poster: '';?>"  autofocus>
+				<input type="file" name="inputPoster" class="form-control" value="<?php echo (isset($imagen_poster))?$imagen_poster: '';?>"  autofocus>
 
 				<br>
 				<button class="btn btn-lg btn-primary btn-block btn-submit" type="submit"><?php echo $actionTitle ?> película</button>

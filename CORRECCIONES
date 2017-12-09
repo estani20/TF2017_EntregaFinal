@@ -1,7 +1,6 @@
 Falta bastante para que este completo, la correcion la pueden entrgar el fin de semana, tengan en cuenta de ir haciendolo antes por si surgen dudas.
 	
 	
-	
 	2 - para las consultas a la BD tienen que usar la clase PDO, no mysqli (leer pautas del proyecto)
 		hagan un nuevo include con conexion PDO a la base, para usarla en lo que tengan que arreglar o modificar (el resto del sitio lo cambian a la nueva conexión si tienen tiempo)
 	
@@ -9,16 +8,7 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	
 	4 - ABM pelicula	
 		- Agregar actores y directores (hacer si tienen tiempo)
-		-  poster 
-			NO usar direcciones absolutas - https://images-na.ssl-images-amazon.com/images/M/M...
-			campo donde pide ingresar url -> sacar restricción url
-			a - podría usarse un input de tipo file, luego la imagen subida guardarla en una carpeta en el sitio (por ej. posters/) 
-			b - guarden la ruta de la imagen (si no sale el punto a),ejemplo posters/imagen1.jpg 
-			- guardan las imagenes en una carpeta en el sitio (ej: poster/poster1.jpg) -- puede tener ese nombre la pelicu o ustedes la renombran con un nombre en general.	
-			- en la BD - guardan la ruta relativa: poster/poster1.jpg
 		
-	5 - Como es el sistema de calificar??
-		- solo se puede poner un numero entero de 1 a 5?
 
 	6 - Validaciones	
 	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que se anumero, que tenga longitud valida)

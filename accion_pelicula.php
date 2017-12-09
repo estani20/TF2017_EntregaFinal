@@ -37,7 +37,7 @@
 		$n_duracion = $_POST['inputDuracion'];
 		$n_sinopsis = $_POST['inputSinopsis'];
 		$n_generos = $_POST['generos'];
-		$n_poster = $_POST['inputPoster'];
+		$n_poster = 'res/img/posters/'.$_POST['inputPoster'];
 	
 		$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
 
@@ -62,7 +62,7 @@
 		$n_fecha = $_POST['inputFecha'];
 		$n_duracion = $_POST['inputDuracion'];
 		$n_sinopsis = $_POST['inputSinopsis'];
-		$n_poster = $_POST['inputPoster'];
+		$n_poster = 'res/img/posters/'.$_POST['inputPoster'];
 
 		$rsgen = $mysqli->query("DELETE FROM tiene WHERE id_pelicula='$id'");
 		$n_generos = $_POST['generos'];
