@@ -8,8 +8,6 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	3 - psw -> $pass = md5($p); - no usar ese algoritmo-no se recomienda, usar el que di en clase (está en los apuntes) - el campo de password tiene que ser de 128 caracteres.
 	
 	4 - ABM pelicula	
-	 - una pelicula puede tener varios generos,  el sistema deja agregar uno solo.
-		- dejar que se elijan varios generos (una opcion es con select multiple, recordar que en el name de select van corchetes - ej. name="generos[]" )
 		- Agregar actores y directores (hacer si tienen tiempo)
 		-  poster 
 			NO usar direcciones absolutas - https://images-na.ssl-images-amazon.com/images/M/M...
@@ -18,9 +16,6 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 			b - guarden la ruta de la imagen (si no sale el punto a),ejemplo posters/imagen1.jpg 
 			- guardan las imagenes en una carpeta en el sitio (ej: poster/poster1.jpg) -- puede tener ese nombre la pelicu o ustedes la renombran con un nombre en general.	
 			- en la BD - guardan la ruta relativa: poster/poster1.jpg
-	
-	Genero 
-		- no deja borrar un genero que se esta usando, lo cual esta bien,  debería avisar que no se puede borrar o el icono de borrar estar deshabilitado
 		
 	5 - Como es el sistema de calificar??
 		- solo se puede poner un numero entero de 1 a 5?
@@ -30,7 +25,6 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 
 	6 - Validaciones	
 	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que se anumero, que tenga longitud valida)
-	- El alta de pelicula se realiza en index, porque?, no sería necesario, siempre tratar de separar funcioanlemnte, el alta de pelicula tendría que ir con el formualrio de pelicula o un archivo a parte. 
 	
     - $rs -- cada vez que se ejecuta una consulta, hay que verificar si esta vacio o no, no usarlo en forma directa.
 	- cuando no se utiliza mas, hay que cerrar el $rs
