@@ -52,7 +52,7 @@ if (isset($_GET['id_pelicula'])){
 
 		<div class="card card-container">
 			<h1 class="card-title pull-left"><?php echo $actionTitle ?> película</h1>
-			<form class="form-submit" action="index.php" method="post">
+			<form class="form-submit" action="accion_pelicula.php" method="post">
 				<input type="hidden" class="form-control" name="id_pelicula"  value="<?php echo $id ;?>" required autofocus>
 				<input type="hidden" class="form-control" name="action"  value="<?php echo $actionTitle ;?>">
 				<label>Título</label>
@@ -64,7 +64,7 @@ if (isset($_GET['id_pelicula'])){
 				<label>Sinópsis</label>
 				<textarea type="text" name="inputSinopsis" class="form-control pb-2" required autofocus><?php echo (isset($sinopsis))?$sinopsis:'';?></textarea>
 				<label>Género</label>
-				<select class="form-control" name="inputGenero">
+				<select class="form-control" name="generos[]" multiple="multiple">
 					<?php
 
 					$rs = $mysqli->query("SELECT * FROM genero g");

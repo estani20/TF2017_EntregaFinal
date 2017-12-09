@@ -10,7 +10,7 @@
   <html lang="en">
   <?php 
 
-  require 'inc/coneccion.php';
+  require 'inc/conn.php';
 
     include_once("navbar.php"); 
     //include_once("pie.php"); 
@@ -22,7 +22,7 @@
 
 ?>
 
-<head>
+  <head>
     <meta charset="utf-8">
     <title>Catálogo de películas - Iniciar sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

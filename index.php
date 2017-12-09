@@ -2,7 +2,7 @@
 <html lang="es">
 <?php
 
-require 'inc/coneccion.php';  #crea la conexión a la BD
+require 'inc/conn.php';  #crea la conexión a la BD
 
 include_once("navbar.php"); 
 
@@ -36,49 +36,9 @@ generar_menu($menu_ppal,1);
 	}
 
 
-	// Dependiendo de los parámetros recibidos, realizolas distintas operaciones
-	//AGREGAR
-	if(isset($_POST['action']) && $_POST['action'] == 'Agregar'){
-		//$id = $_POST['id_pelicula'];
-		$n_titulo = $_POST['inputTitulo'];
-		$n_fecha = $_POST['inputFecha'];
-		$n_duracion = $_POST['inputDuracion'];
-		$n_sinopsis = $_POST['inputSinopsis'];
-		$n_genero = $_POST['inputGenero'];
-		$n_poster = $_POST['inputPoster'];
-	
-	$sql = 
-
-
-		$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
-
-
-		$rs = $mysqli->query("SELECT * FROM pelicula p WHERE p.nombre_pelicula = '$n_titulo';");
-
-		$rs = $rs->fetch_assoc();
-
-		$id = $rs['id_pelicula'];
-
-		$rs = $mysqli->query("INSERT INTO tiene SET id_pelicula = '$id', id_genero = '$n_genero';");
-	}
-
-	//EDITAR
-	if(isset($_POST['action']) && $_POST['action'] == 'Editar'){
-		$id = $_POST['id_pelicula'];
-		$n_titulo = $_POST['inputTitulo'];
-		$n_fecha = $_POST['inputFecha'];
-		$n_duracion = $_POST['inputDuracion'];
-		$n_sinopsis = $_POST['inputSinopsis'];
-		$n_poster = $_POST['inputPoster'];
-		$n_genero = $_POST['inputGenero'];
-
-
-		$rs = $mysqli->query("UPDATE pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster' WHERE id_pelicula = '$id';");
-		$rs = $mysqli->query("UPDATE tiene SET id_genero = '$n_genero' WHERE id_pelicula = '$id';");
-	}
 
 	//ELIMINAR
-	else if(isset($_GET['id_pelicula']) && !isset($_GET['inputTitulo'])){
+	if(isset($_GET['id_pelicula']) && !isset($_GET['inputTitulo'])){
 		$id = $_GET['id_pelicula'];
 		$rs = $mysqli->query("DELETE FROM tiene WHERE id_pelicula = '$id';");
 		$rs = $mysqli->query("DELETE FROM califica WHERE id_pelicula = '$id';");
@@ -155,8 +115,7 @@ generar_menu($menu_ppal,1);
 				</thead>
 				<tbody>
 					<?php
-
-					$rs = $mysqli->query("SELECT * FROM pelicula p JOIN (SELECT t.id_genero Gen, g.nombre_genero, t.id_pelicula idP FROM tiene t JOIN genero g ON t.id_genero = g.id_genero ) AS Join1 ON p.id_pelicula = idP;");
+					$rs = $mysqli->query("SELECT * FROM pelicula;");
 
 
 					foreach($rs as $fila) {
@@ -179,11 +138,18 @@ generar_menu($menu_ppal,1);
 	 						// Si no hay usuario logueado, no se puede realizar ninguna acción
 	 						$actionToDo = "Debes iniciar sesión<br> para realizar acciones";
 	 					}
-
 						echo "
 						<tr>
 							<td><h5>{$fila['nombre_pelicula']}</h5><img src='{$fila['imagen_poster']}' class='img-thumbnail'></td>
-							<td>{$fila['nombre_genero']}</td>
+							<td>";
+							$id = $fila['id_pelicula'];
+							$rsgen = $mysqli->query("SELECT * FROM genero JOIN tiene ON genero.id_genero = tiene.id_genero WHERE id_pelicula = '$id'");
+							foreach ($rsgen as $gen) {
+								echo "<p>{$gen['nombre_genero']}</p>";
+							}
+
+							
+							echo "</td>
 							<td>{$fila['fecha_estreno']}</td>
 							<td>{$fila['tiempo_duracion']}</td>
 							<td>{$fila['sinopsis']}</td>
