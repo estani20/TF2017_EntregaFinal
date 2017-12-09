@@ -38,5 +38,3 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	orden : por calificacion o por titulo 
 	exportar a excel- datos sin agrupar y sin totales
 	print -  vista de impresion, con diferente estilo (el mismo archivo, modificado por estilos cuando se imprime)
-	
-	- fecha - mostrar en forma dd/mm/aaaa (se guarda en la bd a/m/d y se muestra al usuario d/m/a)

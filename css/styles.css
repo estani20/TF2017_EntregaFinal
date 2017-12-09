@@ -94,14 +94,8 @@ body, html {
  }
 
  .btn.btn-submit {
-<<<<<<< HEAD
- 	/*background-color: #4d90fe; */
  	background-color: rgb(104, 145, 162);
- 	/* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-=======
  	background-color: rgb(104, 145, 162);
->>>>>>> Eliminados enlaces absolutos
- 	padding: 0px;
  	font-weight: 700;
  	font-size: 14px;
  	height: 36px;
@@ -131,15 +125,4 @@ body, html {
  	color: rgb(12, 97, 33);
  }
 
- .error{
-    background-color: #E74F4F;
-    /*position: absolute;*/
-    top: 0;
-    padding: 10px 0 ;
-    border-radius:  0 0 5px 5px;
-    color: #fff;
-    width: 100%;
-    text-align: center;
-   /* display: none;*/
-}
 
