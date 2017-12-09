@@ -99,7 +99,7 @@ generar_menu($menu_ppal,1);
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
 				if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
-	        		echo '<a href="/movie-form.php" class="btn btn-success mb-2">Agregar película</a>';
+	        		echo '<a href="movie-form.php" class="btn btn-success mb-2">Agregar película</a>';
 				} 
 			?>
 			
@@ -149,8 +149,11 @@ generar_menu($menu_ppal,1);
 							}
 
 							
-							echo "</td>
-							<td>{$fila['fecha_estreno']}</td>
+							echo "</td>";
+							$fecha = strtotime($fila['fecha_estreno']);
+							$fechaFormateada = date("d/m/Y", $fecha);
+							echo "
+							<td>{$fechaFormateada}</td>
 							<td>{$fila['tiempo_duracion']}</td>
 							<td>{$fila['sinopsis']}</td>
 							<td>{$fila['calificacion_promedio']} / 5</td>

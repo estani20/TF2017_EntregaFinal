@@ -64,6 +64,7 @@ if (isset($_GET['id_pelicula'])){
 				<label>Sinópsis</label>
 				<textarea type="text" name="inputSinopsis" class="form-control pb-2" required autofocus><?php echo (isset($sinopsis))?$sinopsis:'';?></textarea>
 				<label>Género</label>
+				<p>(Mantener CTRL para seleccionar más de un género)</p>
 				<select class="form-control" name="generos[]" multiple="multiple">
 					<?php
 
