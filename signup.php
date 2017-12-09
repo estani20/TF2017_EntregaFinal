@@ -15,9 +15,9 @@
     <meta charset="utf-8">
     <title>Catálogo de películas - Registrarse</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
   <div id="encab">
@@ -36,7 +36,7 @@
         <button class="btn btn-lg btn-primary btn-block btn-submit" type="submit">Registrar</button>
     </form><!-- /form -->
 
-    <p>Ya tienes cuenta?<a href="./login.php" class="redirect-link">
+    <p>Ya tienes cuenta?<a href="login.php" class="redirect-link">
       Iniciar sesión
   </a></p>
 
