@@ -1,5 +1,5 @@
 <?php 
-	require 'inc/conn.php';
+	require 'inc/conexion.php';
 
 	// Inicializo vacíos los parámetros
 	$id = '';
@@ -39,18 +39,40 @@
 		$n_generos = $_POST['generos'];
 		$n_poster = 'res/img/posters/'.$_POST['inputPoster'];
 	
-		$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
+		//$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
+		$sql = "INSERT INTO pelicula SET nombre_pelicula = :titulo, fecha_estreno = :fecest, tiempo_duracion = :durac, sinopsis = :sinopsis, imagen_poster = :poster;";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":titulo",$n_titulo,PDO::PARAM_STR);
+			$sql->bindParam(":fecest",$n_fecha,PDO::PARAM_STR);
+			$sql->bindParam(":durac",$n_duracion,PDO::PARAM_STR);
+			$sql->bindParam(":sinopsis",$n_sinopsis,PDO::PARAM_STR);
+			$sql->bindParam(":poster",$n_poster,PDO::PARAM_STR);
+			$sql->execute();
 
+		//$rs = $mysqli->query("SELECT * FROM pelicula p WHERE p.nombre_pelicula = '$n_titulo';");
+			$sql = "SELECT * FROM pelicula p WHERE p.nombre_pelicula = :titulo;";
+      
+	      	$sql = $db->prepare($sql);
+    	  	$sql->bindParam(":titulo",$n_titulo,PDO::PARAM_STR);
+      		$sql->execute();
+      		$rs = $sql->fetch();
 
-		$rs = $mysqli->query("SELECT * FROM pelicula p WHERE p.nombre_pelicula = '$n_titulo';");
+		//$rs = $rs->fetch_assoc();
+      		$id = $rs['id_pelicula'];
 
-		$rs = $rs->fetch_assoc();
+		$sql = "INSERT INTO tiene SET id_pelicula = :id, id_genero = :genero";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":id",$id,PDO::PARAM_STR);
+			$sql->bindParam(":genero",$n_genero,PDO::PARAM_STR);
+			$sql->execute();
+
 
 		$id = $rs['id_pelicula'];
 		foreach ($n_generos as $g) {
 			$rs = $mysqli->query("INSERT INTO tiene SET id_pelicula = '$id', id_genero = '$g';");
 		}
-		
 
 		 header("location:index.php");
 	}

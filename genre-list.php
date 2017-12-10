@@ -109,7 +109,7 @@
 
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
-				if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
+				if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'admin'){
 	        		echo '<a href="genre-form.php" class="btn btn-success mb-2">Agregar género</a>';
 				} 
 			?>
@@ -123,25 +123,31 @@
 				<tbody>
 					<?php
 
-					$rs = $mysqli->query("SELECT * FROM genero g;");
+					//$rs = $mysqli->query("SELECT * FROM genero g;");
+
+					$sql = "SELECT * FROM genero g;";
+			
+					$sql = $db->prepare($sql);
+					$sql->execute();
 
 					$actionAdmin = $actionCommon = "";
 					
-					foreach($rs as $fila) {
-						$actionAdmin = "<a href='genre-form.php?id_genero={$fila['id_genero']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a>".
-						"<a href='genre-list.php?id_genero={$fila['id_genero']}' onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
+					while($rs = $sql->fetch()) {
+					
+						$actionAdmin = "<a href='genre-form.php?id_genero={$rs['id_genero']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a>".
+						"<a href='genre-list.php?id_genero={$rs['id_genero']}' onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
 	
 						$actionCommon = "<span>No disponible</span>";
 	
 						$action = $actionCommon;
 	
-						if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
+						if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'admin'){
 							$action = $actionAdmin;
 						}
 	
 							echo "
 							<tr class=''>
-								<td class='col'>{$fila['nombre_genero']}</td>
+								<td class='col'>{$rs['nombre_genero']}</td>
 								<td class='col'>".
 									$action.
 								"</td>

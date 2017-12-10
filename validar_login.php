@@ -7,9 +7,8 @@
 
 
   $u = $_POST['usuario'];
-  $p = $_POST['contra']; 
-#  $pass = md5($p); 
-  
+  $p = $_POST['contra'];
+
 #buscar clave encriptada del usuario
   $salt = '34a@$#aA9823$'; //semilla - valor fijo
   $hash = hash('sha512', $salt.$p); //devuelve 128 caracteres
@@ -25,7 +24,7 @@ $sql = "SELECT * FROM usuario u WHERE u.nombre_usuario=:user AND u.password=:pas
 
     if ($count<1){
       print_r($db->errorInfo());  #desarrollo
-      header("location:login.php");
+      header("location:login.php?error=1");
     }
     else{
       $rs = $sql->fetch();
