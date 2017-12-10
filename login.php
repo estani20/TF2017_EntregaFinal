@@ -13,10 +13,7 @@
   require 'inc/conexion.php';
 
     include_once("navbar.php"); 
-    //include_once("pie.php"); 
 
-
-    //generar_tit($tit);
     generar_menu($menu_ppal,1);
     generar_breadcrumbs($camino_nav,0,"Listado"); 
     $error = '';

@@ -14,7 +14,7 @@
   $hash = hash('sha512', $salt.$p); //devuelve 128 caracteres
 # $hash contine la clave encriptada 
 
-$sql = "SELECT * FROM usuario u WHERE u.nombre_usuario=:user AND u.password=:pass";
+$sql = "SELECT userID,nombre_usuario FROM usuario u WHERE u.nombre_usuario=:user AND u.password=:pass";
       
       $sql = $db->prepare($sql);
       $sql->bindParam(":user",$u,PDO::PARAM_STR);
@@ -28,10 +28,8 @@ $sql = "SELECT * FROM usuario u WHERE u.nombre_usuario=:user AND u.password=:pas
     }
     else{
       $rs = $sql->fetch();
-      $datos = $rs['nombre_usuario'];
-      $_SESSION['usuario'] = $datos;
-      echo json_encode(array('error' => false, $datos));
-      header("location:index.php");
+      $_SESSION['usuario'] = $rs;
+      header("location:index.php?");
     
     }
   //}
@@ -39,20 +37,4 @@ $sql = "SELECT * FROM usuario u WHERE u.nombre_usuario=:user AND u.password=:pas
 $rs = null;
 $db = null;
 
-/*
-  #if($usuarios->num_rows == 1):
-  if($rs){
-    #$datos = $usuarios->fetch_assoc();
-    $datos = $rs['nombre_usuario'];
-    $_SESSION['usuario'] = $datos;
-    echo json_encode(array('error' => false, $datos));
-    header("location:index.php");
-    }
-  else
-    {
-      header("location:login.php");
-    }
-
-  $rs->close();
-*/
  ?>

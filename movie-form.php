@@ -8,7 +8,7 @@ include_once("navbar.php");
 generar_barra($barra_sup,1);
 generar_menu($menu_ppal,1);
 
-if((isset($_SESSION['usuario']) && $_SESSION['usuario']!= 'admin') || !isset($_SESSION['usuario'])){ //En la 2da condic borre ['nombre_usuario']
+if((isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario']!= 'admin') || !isset($_SESSION['usuario'])){
         header('Location: index.php');
   }
 
@@ -49,8 +49,6 @@ if (isset($_GET['id_pelicula'])){
 		<?=$menu_ppal?>
 	</div>
 
-	
-
 
 	<div class="container">
 
@@ -76,9 +74,7 @@ if (isset($_GET['id_pelicula'])){
       
       					$sql = $db->prepare($sql);
       					$sql->execute();
-      					//$rs = $sql->fetch();
-					
-						//$rs = $mysqli->query("SELECT * FROM genero g");
+
 						while($rs = $sql->fetch()) {
 							
 							if($rs['id_genero'] == $id_genero){
@@ -88,16 +84,6 @@ if (isset($_GET['id_pelicula'])){
 							echo "<option value={$rs['id_genero']} >{$rs['nombre_genero']}</option>";
 						}
 
-						/*
-						foreach($rs as $fila) {
-
-							if($fila['id_genero'] == $id_genero){
-								echo "<option value={$fila['id_genero']} selected='selected'>{$fila['nombre_genero']}</option>";
-							}else
-
-							echo "<option value={$fila['id_genero']} >{$fila['nombre_genero']}</option>";
-						}
-						*/
 					?>
 				</select>
 				<label>Póster</label>

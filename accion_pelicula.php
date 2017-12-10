@@ -27,7 +27,6 @@
 		$n_poster = $_POST['inputPoster'];
 	}
 
-
 	// Dependiendo de los parámetros recibidos, realizolas distintas operaciones
 	//AGREGAR
 	if(isset($_POST['action']) && $_POST['action'] == 'Agregar'){
@@ -39,7 +38,6 @@
 		$n_generos = $_POST['generos'];
 		$n_poster = 'res/img/posters/'.$_POST['inputPoster'];
 	
-		//$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
 		$sql = "INSERT INTO pelicula SET nombre_pelicula = :titulo, fecha_estreno = :fecest, tiempo_duracion = :durac, sinopsis = :sinopsis, imagen_poster = :poster;";
 			
 			$sql = $db->prepare($sql);
@@ -50,7 +48,6 @@
 			$sql->bindParam(":poster",$n_poster,PDO::PARAM_STR);
 			$sql->execute();
 
-		//$rs = $mysqli->query("SELECT * FROM pelicula p WHERE p.nombre_pelicula = '$n_titulo';");
 			$sql = "SELECT * FROM pelicula p WHERE p.nombre_pelicula = :titulo;";
       
 	      	$sql = $db->prepare($sql);
@@ -58,7 +55,6 @@
       		$sql->execute();
       		$rs = $sql->fetch();
 
-		//$rs = $rs->fetch_assoc();
       		$id = $rs['id_pelicula'];
 
 		$sql = "INSERT INTO tiene SET id_pelicula = :id, id_genero = :genero";
@@ -69,9 +65,14 @@
 			$sql->execute();
 
 
-		$id = $rs['id_pelicula'];
-		foreach ($n_generos as $g) {
-			$rs = $mysqli->query("INSERT INTO tiene SET id_pelicula = '$id', id_genero = '$g';");
+		foreach ($n_generos as $g){
+
+			$sql = "INSERT INTO tiene SET id_pelicula = :id, id_genero = :genero;";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":id",$id,PDO::PARAM_STR);
+			$sql->bindParam(":genero",$g,PDO::PARAM_STR);
+			$sql->execute();
 		}
 
 		 header("location:index.php");
@@ -86,15 +87,34 @@
 		$n_sinopsis = $_POST['inputSinopsis'];
 		$n_poster = $_POST['inputPoster'];
 
-		$rsgen = $mysqli->query("DELETE FROM tiene WHERE id_pelicula='$id'");
+		$sql = "DELETE FROM tiene WHERE id_pelicula='$id'";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":id",$id,PDO::PARAM_STR);
+			$sql->execute();
+
 		$n_generos = $_POST['generos'];
 		foreach ($n_generos as $g) {
-			$rs = $mysqli->query("INSERT INTO tiene SET id_pelicula = '$id', id_genero = '$g';");
+
+			$sql = "INSERT INTO tiene SET id_pelicula = :id, id_genero = :genero;";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":id",$id,PDO::PARAM_STR);
+			$sql->bindParam(":genero",$g,PDO::PARAM_STR);
+			$sql->execute();
 		}
 
+		$sql = "UPDATE pelicula SET nombre_pelicula = :titulo, fecha_estreno = :fecest, tiempo_duracion = :durac, sinopsis = :sinopsis, imagen_poster = :poster WHERE id_pelicula = :id;";
+			
+		$sql = $db->prepare($sql);
+		$sql->bindParam(":titulo",$n_titulo,PDO::PARAM_STR);
+		$sql->bindParam(":fecest",$n_fecha,PDO::PARAM_STR);
+		$sql->bindParam(":durac",$n_duracion,PDO::PARAM_STR);
+		$sql->bindParam(":sinopsis",$n_sinopsis,PDO::PARAM_STR);
+		$sql->bindParam(":poster",$n_poster,PDO::PARAM_STR);
+		$sql->bindParam(":id",$id,PDO::PARAM_STR);
+		$sql->execute();
 
-		$rs = $mysqli->query("UPDATE pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster' WHERE id_pelicula = '$id';");
-		//$rs = $mysqli->query("UPDATE tiene SET id_genero = '$n_generos' WHERE id_pelicula = '$id';");
 		 header("location:index.php");
 	}
 
