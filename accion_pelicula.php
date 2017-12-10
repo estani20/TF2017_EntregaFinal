@@ -84,7 +84,7 @@
 		$n_fecha = $_POST['inputFecha'];
 		$n_duracion = $_POST['inputDuracion'];
 		$n_sinopsis = $_POST['inputSinopsis'];
-		$n_poster = 'res/img/posters/'.$_POST['inputPoster'];
+		$n_poster = $_POST['inputPoster'];
 
 		$rsgen = $mysqli->query("DELETE FROM tiene WHERE id_pelicula='$id'");
 		$n_generos = $_POST['generos'];

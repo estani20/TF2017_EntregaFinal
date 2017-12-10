@@ -267,7 +267,7 @@ generar_menu($menu_ppal,1);
 
 						echo "
 						<tr>
-							<td><h5>{$rs['nombre_pelicula']}</h5><img src='{$rs['imagen_poster']}' class='img-thumbnail'></td>
+							<td><h5>{$rs['nombre_pelicula']}</h5><img src='res/img/posters/{$rs['imagen_poster']}' class='img-thumbnail'></td>
 							<td>{$rs['nombre_genero']}</td>
 							<td>{$rs['fecha_estreno']}</td>
 							<td>{$rs['tiempo_duracion']}</td>
