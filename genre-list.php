@@ -2,7 +2,7 @@
 <html lang="es">
 <?php
 
-	require 'inc/conn.php';  #crea la conexión a la BD
+	require 'inc/conexion.php';  #crea la conexión a la BD
 
 	include_once("navbar.php"); 
 
@@ -31,7 +31,14 @@
 		if(($nuevoGenero != '') && ($id == '')){
 	
 		
-		$rs = $mysqli->query("INSERT INTO genero SET nombre_genero = '".$nuevoGenero."';");
+		//$rs = $mysqli->query("INSERT INTO genero SET nombre_genero = '".$nuevoGenero."';");
+
+		$sql = "INSERT INTO genero SET nombre_genero = :nuevoGenero;";
+      
+      	$sql = $db->prepare($sql);
+      	$sql->bindParam(":nuevoGenero",$nuevoGenero,PDO::PARAM_STR);
+      	$sql->execute();
+      	$rs = $sql->fetch();
 	}
 
 
@@ -40,8 +47,15 @@
 		$id = $_POST['id_genero'];
 		$nuevoGenero = $_POST['new_genero'];
 
+		//$rs = $mysqli->query("UPDATE genero SET nombre_genero = '$nuevoGenero' WHERE id_genero = '".$id."';");
 
-		$rs = $mysqli->query("UPDATE genero SET nombre_genero = '$nuevoGenero' WHERE id_genero = '".$id."';");
+		$sql = "UPDATE genero SET nombre_genero = :nuevoGenero WHERE id_genero = :id';";
+      
+      	$sql = $db->prepare($sql);
+      	$sql->bindParam(":id",$id,PDO::PARAM_STR);
+      	$sql->bindParam(":nuevoGenero",$nuevoGenero,PDO::PARAM_STR);
+      	$sql->execute();
+      	$rs = $sql->fetch();
 	}
 
 	//ELIMINAR

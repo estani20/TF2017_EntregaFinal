@@ -24,9 +24,6 @@ if (isset($_GET['id_pelicula'])){
       	$sql->bindParam(":id",$id,PDO::PARAM_STR);
       	$sql->execute();
       	$rs = $sql->fetch();
-	//$rs = $mysqli->query("SELECT * FROM pelicula p JOIN tiene t WHERE p.id_pelicula = '$id';");
-
-	//$rs = $rs->fetch_assoc();
 
 	$nombre = $rs['nombre_pelicula'];
 	$fecha_estreno = $rs['fecha_estreno'];
@@ -75,21 +72,32 @@ if (isset($_GET['id_pelicula'])){
 				<select class="form-control" name="generos[]" multiple="multiple">
 					<?php
 
-					$sql = "SELECT * FROM genero g";
+						$sql = "SELECT * FROM genero g";
       
-      				$sql = $db->prepare($sql);
-      				$sql->execute();
-      				$rs = $sql->fetch();
+      					$sql = $db->prepare($sql);
+      					$sql->execute();
+      					//$rs = $sql->fetch();
 					
-					//$rs = $mysqli->query("SELECT * FROM genero g");
-					
-					foreach($rs as $fila) {
-						if($fila['id_genero'] == $id_genero){
-							echo "<option value={$fila['id_genero']} selected='selected'>{$fila['nombre_genero']}</option>";
-						}else
+						//$rs = $mysqli->query("SELECT * FROM genero g");
+						while($rs = $sql->fetch()) {
+							
+							if($rs['id_genero'] == $id_genero){
+								echo "<option value={$rs['id_genero']} selected='selected'>{$rs['nombre_genero']}</option>";
+							}else
 
-						echo "<option value={$fila['id_genero']} >{$fila['nombre_genero']}</option>";
-					}
+							echo "<option value={$rs['id_genero']} >{$rs['nombre_genero']}</option>";
+						}
+
+						/*
+						foreach($rs as $fila) {
+
+							if($fila['id_genero'] == $id_genero){
+								echo "<option value={$fila['id_genero']} selected='selected'>{$fila['nombre_genero']}</option>";
+							}else
+
+							echo "<option value={$fila['id_genero']} >{$fila['nombre_genero']}</option>";
+						}
+						*/
 					?>
 				</select>
 				<label>Póster</label>
