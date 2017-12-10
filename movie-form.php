@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
 <?php 
-require 'inc/conn.php';  #crea la conexión a la BD
+require 'inc/conexion.php';  #crea la conexión a la BD
 
 include_once("navbar.php"); 
 
 generar_barra($barra_sup,1);
 generar_menu($menu_ppal,1);
 
-if((isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] != 'admin') || !isset($_SESSION['usuario'])){
+if((isset($_SESSION['usuario']) && $_SESSION['usuario']!= 'admin') || !isset($_SESSION['usuario'])){ //En la 2da condic borre ['nombre_usuario']
         header('Location: index.php');
   }
 
@@ -17,9 +17,16 @@ $actionTitle = 'Agregar';
 if (isset($_GET['id_pelicula'])){
 	$actionTitle = 'Editar';
 	$id = $_GET['id_pelicula'];
-	$rs = $mysqli->query("SELECT * FROM pelicula p JOIN tiene t WHERE p.id_pelicula = '$id';");
 
-	$rs = $rs->fetch_assoc();
+	$sql = "SELECT * FROM pelicula p JOIN tiene t WHERE p.id_pelicula = :id;";
+      
+      	$sql = $db->prepare($sql);
+      	$sql->bindParam(":id",$id,PDO::PARAM_STR);
+      	$sql->execute();
+      	$rs = $sql->fetch();
+	//$rs = $mysqli->query("SELECT * FROM pelicula p JOIN tiene t WHERE p.id_pelicula = '$id';");
+
+	//$rs = $rs->fetch_assoc();
 
 	$nombre = $rs['nombre_pelicula'];
 	$fecha_estreno = $rs['fecha_estreno'];
@@ -68,7 +75,13 @@ if (isset($_GET['id_pelicula'])){
 				<select class="form-control" name="generos[]" multiple="multiple">
 					<?php
 
-					$rs = $mysqli->query("SELECT * FROM genero g");
+					$sql = "SELECT * FROM genero g";
+      
+      				$sql = $db->prepare($sql);
+      				$sql->execute();
+      				$rs = $sql->fetch();
+					
+					//$rs = $mysqli->query("SELECT * FROM genero g");
 					
 					foreach($rs as $fila) {
 						if($fila['id_genero'] == $id_genero){

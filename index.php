@@ -47,17 +47,39 @@ generar_menu($menu_ppal,1);
 		$n_genero = $_POST['inputGenero'];
 		$n_poster = $_POST['inputPoster'];
 	
-	
-		$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
 
+		//$rs = $mysqli->query("INSERT INTO pelicula SET nombre_pelicula = '$n_titulo', fecha_estreno = '$n_fecha', tiempo_duracion = '$n_duracion', sinopsis = '$n_sinopsis', imagen_poster = '$n_poster';");
+		$sql = "INSERT INTO pelicula SET nombre_pelicula = :titulo, fecha_estreno = :fecest, tiempo_duracion = :durac, sinopsis = :sinopsis, imagen_poster = :poster;";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":titulo",$n_titulo,PDO::PARAM_STR);
+			$sql->bindParam(":fecest",$n_fecha,PDO::PARAM_STR);
+			$sql->bindParam(":durac",$n_duracion,PDO::PARAM_STR);
+			$sql->bindParam(":sinopsis",$n_sinopsis,PDO::PARAM_STR);
+			$sql->bindParam(":poster",$n_poster,PDO::PARAM_STR);
+			$sql->execute();
 
-		$rs = $mysqli->query("SELECT * FROM pelicula p WHERE p.nombre_pelicula = '$n_titulo';");
+		$sql = "SELECT * FROM pelicula p WHERE p.nombre_pelicula = :titulo;";
+      
+      	$sql = $db->prepare($sql);
+      	$sql->bindParam(":titulo",$n_titulo,PDO::PARAM_STR);
+      	$sql->execute();
+      	$rs = $sql->fetch();
 
-		$rs = $rs->fetch_assoc();
+		//$rs = $mysqli->query("SELECT * FROM pelicula p WHERE p.nombre_pelicula = '$n_titulo';");
+
+		//$rs = $rs->fetch_assoc();
 
 		$id = $rs['id_pelicula'];
 
-		$rs = $mysqli->query("INSERT INTO tiene SET id_pelicula = '$id', id_genero = '$n_genero';");
+		$sql = "INSERT INTO tiene SET id_pelicula = :id, id_genero = :genero";
+			
+			$sql = $db->prepare($sql);
+			$sql->bindParam(":id",$id,PDO::PARAM_STR);
+			$sql->bindParam(":genero",$n_genero,PDO::PARAM_STR);
+			$sql->execute();
+
+		//$rs = $mysqli->query("INSERT INTO tiene SET id_pelicula = '$id', id_genero = '$n_genero';");
 	}
 
 	//EDITAR
@@ -137,7 +159,7 @@ generar_menu($menu_ppal,1);
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
 				if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'admin'){
-	        		echo '<a href="/movie-form.php" class="btn btn-success mb-2">Agregar película</a>';
+	        		echo '<a href="./movie-form.php" class="btn btn-success mb-2">Agregar película</a>';
 				} 
 			?>
 			
@@ -154,10 +176,16 @@ generar_menu($menu_ppal,1);
 				<tbody>
 					<?php
 
-					$rs = $mysqli->query("SELECT * FROM pelicula p JOIN (SELECT t.id_genero Gen, g.nombre_genero, t.id_pelicula idP FROM tiene t JOIN genero g ON t.id_genero = g.id_genero ) AS Join1 ON p.id_pelicula = idP;");
+					$sql = "SELECT * FROM pelicula p JOIN (SELECT t.id_genero Gen, g.nombre_genero, t.id_pelicula idP FROM tiene t JOIN genero g ON t.id_genero = g.id_genero ) AS Join1 ON p.id_pelicula = idP;";
+			
+					$sql = $db->prepare($sql);
+					$sql->execute();
+					$count = $sql->rowCount();
+					//$rs = $sql->fetch();
+					//$rs = $mysqli->query("SELECT * FROM pelicula p JOIN (SELECT t.id_genero Gen, g.nombre_genero, t.id_pelicula idP FROM tiene t JOIN genero g ON t.id_genero = g.id_genero ) AS Join1 ON p.id_pelicula = idP;");
 
 
-					foreach($rs as $fila) {
+					foreach($sql as $fila) {
 						// Template para la columna de acción del usuario admin
 						$actionAdmin = "<a href='./movie-form.php?id_pelicula={$fila['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
 								<a href='./index.php?id_pelicula={$fila['id_pelicula']}'  onclick='return 	checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";

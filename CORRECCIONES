@@ -4,8 +4,6 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	2 - para las consultas a la BD tienen que usar la clase PDO, no mysqli (leer pautas del proyecto)
 		hagan un nuevo include con conexion PDO a la base, para usarla en lo que tengan que arreglar o modificar (el resto del sitio lo cambian a la nueva conexión si tienen tiempo)
 	
-	3 - psw -> $pass = md5($p); - no usar ese algoritmo-no se recomienda, usar el que di en clase (está en los apuntes) - el campo de password tiene que ser de 128 caracteres.
-	
 	4 - ABM pelicula	
 		- Agregar actores y directores (hacer si tienen tiempo)
 		
