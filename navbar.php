@@ -54,7 +54,7 @@ EOT;
 
 		
 		if ($opcion==1) 
-			$links = "<div class='collapse navbar-collapse flex-row-reverse'><ul class='navbar-nav'><li class='nav-item pr-2'><span class='navbar-text'>Bienvenido, ".$_SESSION['usuario']['nombre_usuario']."!</span></li><li class='nav-item'><a href='logout.php'  title='Cerrar sesión' class='nav-link enabled'> Cerrar sesión</a></li></ul></div>";
+			$links = "<div class='collapse navbar-collapse flex-row-reverse'><ul class='navbar-nav'><li class='nav-item pr-2'><span class='navbar-text'>Bienvenido, ".$_SESSION['usuario']."!</span></li><li class='nav-item'><a href='logout.php'  title='Cerrar sesión' class='nav-link enabled'> Cerrar sesión</a></li></ul></div>";
 
 		
 		$menu_ppal .= "$links

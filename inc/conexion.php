@@ -14,11 +14,11 @@ try {
 	$db = new PDO($strCnx, $usuario, $contrasenia);
 	
 	$db->setAttribute(PDO::ATTR_CASE,PDO::CASE_LOWER); # para referenciar en minuscula el nombre de las columnas
-	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC); # Relizar el FETCh ASSOC por defecto para ahorrar memoria
+	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC); # Relizar el FETCH ASSOC por defecto para ahorrar memoria
 	
 } catch (PDOException $e) {
-    // print "Error: " . $e->getMessage() . "<br/>";   # cambiar por un error personalizado 
-	echo "Surgió un error en la aplicación. ";
+    echo "Surgió un error en la aplicación.<br/>Error al conectarse a la base de datos por el error: <br/>";
+    print "Error: " . $e->getMessage() . "<br/>";   # cambiar por un error personalizado
     die();
 }
 ?>

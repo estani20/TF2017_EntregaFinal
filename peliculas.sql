@@ -18,11 +18,19 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE IF NOT EXISTS peliculas DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+USE peliculas;
 --
 -- Base de datos: `peliculas`
 --
 
 -- --------------------------------------------------------
+
+# Creacion y privilegios del usuario "admin" que solo se puede conectar desde el localhost
+GRANT ALL PRIVILEGES ON peliculas.* TO admin@localhost
+  IDENTIFIED BY 'admin' WITH GRANT OPTION;
+
 
 --
 -- Estructura de tabla para la tabla `actor`
@@ -186,7 +194,7 @@ INSERT INTO `tiene` (`id_pelicula`, `id_genero`) VALUES
 CREATE TABLE `usuario` (
   `userID` int(10) UNSIGNED NOT NULL,
   `nombre_usuario` varchar(35) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

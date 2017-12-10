@@ -10,7 +10,7 @@
   <html lang="en">
   <?php 
 
-  require 'inc/conn.php';
+  require 'inc/conexion.php';
 
     include_once("navbar.php"); 
     //include_once("pie.php"); 
