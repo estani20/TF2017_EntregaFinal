@@ -12,7 +12,6 @@ generar_menu($menu_ppal,1);
 $genero = (isset($_POST["genero"]) && !empty($_POST["genero"]))? $_POST["genero"]:0;
 $fecha_estreno = (isset($_POST["fecha_estreno"]) && !empty($_POST["fecha_estreno"]))? trim($_POST["fecha_estreno"]):null; 
 $orden = (isset($_POST["orden"]) && !empty($_POST["orden"]))? $_POST["orden"]:0;
-			// 1 - Apellido --  2 - Legajo
 
 
 			# busca los generos disponibles y se presentan en una lista
@@ -42,7 +41,7 @@ function lista_generos(&$lista_c) {
 
 $filtro="";
 $orden_sql="";
-$col="5";	
+$col="6";	
 
 	# valido - genero sea entero 
 	#		 - orden sea entero
@@ -78,7 +77,7 @@ $col="5";
 	$filtro = "";
 	
 	if ($genero <> 0) {
-		$titfiltro .= " - genero: $genero ";  
+		$titfiltro .= " - Género: $genero $fecha_estreno ";  
 		$filtro .= " genero.id_genero=$genero " ;
 	}
 
@@ -86,19 +85,19 @@ $col="5";
 		$titfiltro .= " - Fecha Estreno: ".date("d/m/Y",strtotime($fecha_estreno));
 		
 		if ($filtro!=="")  $filtro .= " 	AND " ;
-		$filtro .= " 	fecha_estreno >='$fecha_estreno' ";
+		$filtro .= "fecha_estreno >= '$fecha_estreno'";
 	}
 	
-	/*if ($orden==1) 
-		$orden_sql .= "genero.nombre_genero, apellido";
+	if ($orden==1) 
+		$orden_sql .= "nombre_pelicula ASC";
 
 	if ($orden==2) 
-		$orden_sql .= "genero.nombre_genero, legajo ";
-*/
+		$orden_sql .= "calificacion_promedio DESC";
+
 	
 	
 	if ($filtro=="") $filtro=" 0=0 ";
-	/*if ($orden_sql=="") $orden_sql="genero.nombre_genero, dni ";*/
+	if ($orden_sql=="") $orden_sql="pelicula.nombre_pelicula, pelicula.calificacion_promedio ";
 
 	
 	$sql ="
@@ -106,8 +105,8 @@ $col="5";
 		FROM pelicula
 		INNER JOIN tiene ON pelicula.id_pelicula=tiene.id_pelicula
 		INNER JOIN genero ON genero.id_genero=tiene.id_genero
-		WHERE $filtro/*
-		ORDER BY $orden_sql*/
+		WHERE $filtro
+		ORDER BY $orden_sql 
 	";
 	$rs = $db->query($sql);
 
@@ -167,7 +166,7 @@ $col="5";
 	<div id="cuerpo" class="container no-border">
 
 		<div class="card card-container pt-4 no-border no-print">
-			<form  class="form-inline" name="datos" id="datos" method="post" action="personas_cons.php" onsubmit="return listado();"> 
+			<form  class="form-inline" name="datos" id="datos" method="post" action="cons.php" onsubmit="return listado();"> 
 				<div class="form-group"> 
 					<legend>Opciones</legend>
 
@@ -211,16 +210,17 @@ $col="5";
 				</a>
 
 			</div>
-			<p class="constit1"><?=$titfiltro?></p>
+			<p ><?=$titfiltro?></p>
 
 
 			<table width="85%" class="table table-striped"> 
 				<thead class="thead thead-dark">
-					<th>Película</th>
 					<th>Género</th>
+					<th>Película</th>
 					<th>Duración</th>
 					<th>Calificación</th>
 					<th>Fecha de estreno</th>
+					<th></th>
 				</thead>
 				<?php 		
 
@@ -237,24 +237,25 @@ $col="5";
 							$subtotal="";
 
 							if ($tot<>0) {
-								$subtotal="<td colspan=$col class='cons_txt1'> total: $tot</td> ";
+								$subtotal="<td colspan=$col > Subtotal: $tot</td> ";
 							}
 							?>					
 							<tr><?=$subtotal?></tr>
 							<tr>
-								<td colspan=<?=$col?> class="cons_txt"> <?=$reg['nombre_genero']?></td> 
+								<td colspan=<?=$col?>><strong> <?=$reg['nombre_genero']?></strong></td> 
 							</tr>
 							<?php  
 							$genero = $reg['id_genero']; 
 							$tot=0;
 						}
 						?>
-						<tr class="constxt1">
-							<td><?=$reg['nombre_pelicula'] ?></td>
-							<td><?=$reg['nombre_genero']?></td>
+						<tr >
+							<td></td>
+							<td><?=$reg['nombre_pelicula']?></td>
 							<td><?=$reg['tiempo_duracion']?></td>
 							<td><?=$reg['calificacion_promedio']?></td>
 							<td><?=date("d-m-Y",strtotime($reg['fecha_estreno']))?></td>
+							<td></td>
 						</tr>
 						<?php
 						$tot++;
@@ -262,11 +263,11 @@ $col="5";
 					}
 
 					if ($tot<>0) {
-						$subtotal="<tr><td colspan=$col class='cons_txt1'> total: $tot</td></tr> ";
+						$subtotal="<tr><td colspan=$col > Subtotal: $tot</td></tr> ";
 					}
 
 					if ($total<>0) {
-						$subtotal.="<tr><td colspan=$col class='cons_txt1'> Total Empleados: $total</td></tr> ";
+						$subtotal.="<tr><td colspan=$col > Total películas: $total</td></tr> ";
 					} else {
 						$subtotal.="<tr><td colspan=$col> No se encuentran datos para el filtro ingresado</td></tr> ";
 					}
