@@ -109,13 +109,13 @@
 	<?php echo $error; ?>
 	
 
-	<div class="container">
-		<div class="card card-container pt-4">
+	<div class="container no-border">
+		<div class="card card-container pt-4 no-border">
 
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
 				if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'admin'){
-	        		echo '<a href="genre-form.php" class="btn btn-success mb-2">Agregar género</a>';
+	        		echo '<a href="genre-form.php" class="btn btn-success mb-2 no-print">Agregar género</a>';
 				} 
 			?>
 
