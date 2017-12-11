@@ -31,8 +31,6 @@
 		if(($nuevoGenero != '') && ($id == '')){
 	
 		
-		//$rs = $mysqli->query("INSERT INTO genero SET nombre_genero = '".$nuevoGenero."';");
-
 		$sql = "INSERT INTO genero SET nombre_genero = :nuevoGenero;";
       
       	$sql = $db->prepare($sql);
@@ -47,8 +45,6 @@
 		$id = $_POST['id_genero'];
 		$nuevoGenero = $_POST['new_genero'];
 
-		//$rs = $mysqli->query("UPDATE genero SET nombre_genero = '$nuevoGenero' WHERE id_genero = '".$id."';");
-
 		$sql = "UPDATE genero SET nombre_genero = :nuevoGenero WHERE id_genero = :id';";
       
       	$sql = $db->prepare($sql);
@@ -62,8 +58,17 @@
 	else if(isset($_GET['id_genero'])){
 		$id = $_GET['id_genero'];
 	
-		$rs = $mysqli->query("DELETE FROM genero WHERE id_genero = '".$id."';");
-		if($rs==false){
+		//$rs = $mysqli->query("DELETE FROM genero WHERE id_genero = '".$id."';");
+
+		$sql = "DELETE FROM genero WHERE id_genero = :id';";
+      
+      	$sql = $db->prepare($sql);
+      	$sql->bindParam(":id",$id,PDO::PARAM_STR);
+      	$sql->execute();
+      	$rs = $sql->fetch();
+      	$count = $sql->rowCount();
+
+		if($count < 1){
    		   $error =  '<div class="alert alert-danger mt-3  mr-5 ml-5" >
 						<span>No se puede eliminar un género que tenga películas asociadas</span>
 					</div>';
