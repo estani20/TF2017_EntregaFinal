@@ -6,7 +6,8 @@
 	# definición de las opciones de menú
 	$menu1= [ 
 			[1,"Películas","index.php","Lista de películas"], 
-			[2, "Géneros", "genre-list.php", "Lista de géneros"]
+			[2, "Géneros", "genre-list.php", "Lista de géneros"],
+			[3, "Consultas", "cons.php", "Consultas"]
 	];
 		
 	
