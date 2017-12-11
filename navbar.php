@@ -23,7 +23,7 @@ EOT;
 	global $menu1;
 	
 		$menu_ppal = "<nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-  				<a class='navbar-brand' href='index.php''>Trabajo Final</a>
+  				<a class='navbar-brand no-print' href='index.php''>Trabajo Final</a>
 
   				<div class='collapse navbar-collapse' id='navbarSupportedContent'> <ul id='menuppal' class='navbar-nav mr-auto'>";   
 		

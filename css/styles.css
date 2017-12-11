@@ -125,4 +125,16 @@ body, html {
  	color: rgb(12, 97, 33);
  }
 
+ @media print {
+    table td:last-child {display:none}
+    table th:last-child {display:none}
+    .no-print, .no-print * {
+    	display: none !important;
+   	}
+   	.no-border, .no-border * {
+   		border: 0;
+   	}
+
+  }
+
 

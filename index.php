@@ -126,13 +126,13 @@ generar_menu($menu_ppal,1);
 		<?=$menu_ppal?>
 	</div>
 
-	<div class="container pt-1">
-		<div class="card card-container pt-4">
+	<div class="container pt-1 no-border">
+		<div class="card card-container pt-4 no-border">
 
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
 				if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
-	        		echo '<a href="./movie-form.php" class="btn btn-success mb-2">Agregar película</a>';
+	        		echo '<a href="movie-form.php" class="btn btn-success mb-2 no-print">Agregar película</a>';
 				} 
 			?>
 			
@@ -157,8 +157,8 @@ generar_menu($menu_ppal,1);
 					
 					while($rs = $sql->fetch()) {
 						// Template para la columna de acción del usuario admin
-						$actionAdmin = "<a href='./movie-form.php?id_pelicula={$rs['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
-								<a href='./index.php?id_pelicula={$rs['id_pelicula']}'  onclick='return checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
+						$actionAdmin = "<a href='movie-form.php?id_pelicula={$rs['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
+								<a href='index.php?id_pelicula={$rs['id_pelicula']}'  onclick='return checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
 
 						// Template para la columna de acción del usuario común
 						$actionUser = "<div><form class='form-submit' method='post' action='index.php'><input type='hidden' name='inputIdCalif' value={$rs['id_pelicula']}></input><input type='number' name='inputCalif' min='1' max='5' size='1' value='3' required/><i class='fa fa-star'></span></i><button type='submit' class='btn btn-lg btn-primary btn-block btn-submit mt-2'>Calificar</button></form></div>";
