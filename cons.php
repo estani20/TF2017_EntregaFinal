@@ -10,7 +10,7 @@ generar_menu($menu_ppal,1);
 
 
 $genero = (isset($_POST["genero"]) && !empty($_POST["genero"]))? $_POST["genero"]:0;
-$fecha_estreno = (isset($_POST["fecha_estreno"]) && !empty($_POST["fecha_estreno"]))? trim($_POST["fecha_estreno"]):null; 
+$duracion = (isset($_POST["duracion"]) && !empty($_POST["duracion"]))? trim($_POST["duracion"]):null; 
 $orden = (isset($_POST["orden"]) && !empty($_POST["orden"]))? $_POST["orden"]:0;
 
 
@@ -46,27 +46,7 @@ $col="6";
 	# valido - genero sea entero 
 	#		 - orden sea entero
 
-	# filtro por una fecha ($fecha_estreno)  
-	if (!is_null($fecha_estreno) && (trim($fecha_estreno)<>"")) {  // sale Y/m/d 	
-
-		$fecha_estreno = str_replace(array('\'', '-', '.', ','), '/', $fecha_estreno); 
-		$fecha_estreno = str_replace(' ','', $fecha_estreno); 
-		
-		$patron="/^[0-2][0-9]\/[01][0-9]\/[0-9]{4}/";
-
-		if (preg_match($patron,$fecha_estreno)==1) {
-			
-			$f = explode('/', $fecha_estreno);
-
-			if (checkdate($f[1],$f[0],$f[2])) {   #checkdate(m,d,y)
-				$fecha_estreno = "$f[2]/$f[1]/$f[0]";  #Y-m-d
-			} else {
-				$fecha_estreno=null;
-			}
-		} else {
-			$fecha_estreno=null;
-		}
-	}
+	
 
 	
 	lista_generos ($lista_c);  #lista de generos
@@ -77,15 +57,15 @@ $col="6";
 	$filtro = "";
 	
 	if ($genero <> 0) {
-		$titfiltro .= " - Género: $genero $fecha_estreno ";  
+		$titfiltro .= " - Género: $genero ";  
 		$filtro .= " genero.id_genero=$genero " ;
 	}
 
-	if ($fecha_estreno <> "") {
-		$titfiltro .= " - Fecha Estreno: ".date("d/m/Y",strtotime($fecha_estreno));
+	if ($duracion <> "") {
+		$titfiltro .= " - Duración: ";
 		
 		if ($filtro!=="")  $filtro .= " 	AND " ;
-		$filtro .= "fecha_estreno >= '$fecha_estreno'";
+		$filtro .= "tiempo_duracion >= $duracion";
 	}
 	
 	if ($orden==1) 
@@ -172,8 +152,8 @@ $col="6";
 
 					<label for="genero">Género</label><?=$lista_c?>   
 
-					<label for="fecha_estreno">  A partir de  </label>
-					<input type="date"  class="form-control mx-sm-3" id="fecha_estreno" name="fecha_estreno" value="<?php if (!is_null($fecha_estreno)){?><?=trim(date("d/m/Y",strtotime($fecha_estreno)))?><?php }?>" size="6" maxlength="10">
+					<label for="duracion">  Duración mínima  </label>
+					<input type="number"  class="form-control mx-sm-3" id="duracion" name="duracion" " size="6" maxlength="10">
 
 					
 
