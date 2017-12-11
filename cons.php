@@ -62,7 +62,7 @@ $col="6";
 	}
 
 	if ($duracion <> "") {
-		$titfiltro .= " - Duración: ";
+		$titfiltro .= " - Duración mayor a (minutos): $duracion";
 		
 		if ($filtro!=="")  $filtro .= " 	AND " ;
 		$filtro .= "tiempo_duracion >= $duracion";
@@ -93,7 +93,7 @@ $col="6";
 	if (!$rs ) { 
 		print_r($db->errorInfo()); # mensaje en desarrollo
 
-		echo "<tr><td colspan='<?=$col?>'><br>&nbsp;&nbsp; - No se encuentran datos para el filtro ingresado.</td></tr>";
+		echo "<tr><td colspan='<?=$col-1?>'><br>&nbsp;&nbsp; - No se encuentran datos para el filtro ingresado.</td><td></td></tr>";
 		exit;
 	}
 	
@@ -125,7 +125,7 @@ $col="6";
 
 		function excel() {
 			document.getElementById("datos").method = "post";
-			document.getElementById("datos").action = "personas_xls.php";
+			document.getElementById("datos").action = "peliculas_xls.php";
 			document.getElementById("datos").submit(); 
 		}		
 	</script>
@@ -152,7 +152,7 @@ $col="6";
 
 					<label for="genero">Género</label><?=$lista_c?>   
 
-					<label for="duracion">  Duración mínima  </label>
+					<label for="duracion">  Duración mínima (minutos)  </label>
 					<input type="number"  class="form-control mx-sm-3" id="duracion" name="duracion" " size="6" maxlength="10">
 
 					
@@ -217,12 +217,13 @@ $col="6";
 							$subtotal="";
 
 							if ($tot<>0) {
-								$subtotal="<td colspan=$col > Subtotal: $tot</td> ";
+								$subtotal="<td colspan=$col-1 > Subtotal: $tot</td><td></td> ";
 							}
 							?>					
 							<tr><?=$subtotal?></tr>
 							<tr>
-								<td colspan=<?=$col?>><strong> <?=$reg['nombre_genero']?></strong></td> 
+								<td colspan=<?=$col-1?>><strong> <?=$reg['nombre_genero']?></strong></td> 
+								<td></td>
 							</tr>
 							<?php  
 							$genero = $reg['id_genero']; 
@@ -243,13 +244,13 @@ $col="6";
 					}
 
 					if ($tot<>0) {
-						$subtotal="<tr><td colspan=$col > Subtotal: $tot</td></tr> ";
+						$subtotal="<tr><td colspan=$col -1> Subtotal: $tot</td><td></td></tr> ";
 					}
 
 					if ($total<>0) {
-						$subtotal.="<tr><td colspan=$col > Total películas: $total</td></tr> ";
+						$subtotal.="<tr><td colspan=$col-1 > Total películas: $total</td><td></td></tr> ";
 					} else {
-						$subtotal.="<tr><td colspan=$col> No se encuentran datos para el filtro ingresado</td></tr> ";
+						$subtotal.="<tr><td colspan=$col-1> No se encuentran datos para el filtro ingresado</td><td></td></tr> ";
 					}
 
 					echo $subtotal;
