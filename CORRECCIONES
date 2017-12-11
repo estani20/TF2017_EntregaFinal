@@ -3,9 +3,3 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	
 6 - Validaciones	
 	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que sea numero, que tenga longitud valida)
-	
-7 - Hacer reporte/consulta
-	Realizar una reporte de peliculas agrupadas por genero, que tenga subtotal de peliculas por genero y total de peliculas
-	filtro: por genero (select - todos los generos o uno en particular) y por duracion
-	orden : por calificacion o por titulo 
-	exportar a excel- datos sin agrupar y sin totales

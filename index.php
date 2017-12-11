@@ -15,6 +15,8 @@ generar_menu($menu_ppal,1);
 	$n_fecha = '';
 	$n_duracion = 0;
 
+	$error = '';
+
 	// Seteo los valores a los atributos de la película dependiendo de los parámetros recibidos
 	if(isset($_POST['id_pelicula'])){
 		$id = $_POST['id_pelicula'];
@@ -35,8 +37,23 @@ generar_menu($menu_ppal,1);
 		$n_poster = $_POST['inputPoster'];
 	}
 
+	// Dependiendo del parámetro de error, preparo el mensaje
+	if(isset($_GET['error'])){
+		$err = $_GET['error'];
+		if($err == 1){
+			$error =  '<div class="alert alert-danger mt-3  mr-5 ml-5" >
+						<span>Error al intentar insertar la película</span>
+					</div>';
 
-	// Dependiendo de los parámetros recibidos, realizolas distintas operaciones
+		} else if ($err == 2){
+			$error =  '<div class="alert alert-danger mt-3  mr-5 ml-5" >
+						<span>La duración de la película debe ser mayor a 0 y menor a 500 minutos</span>
+					</div>';
+		}
+	}
+
+
+	// Dependiendo de los parámetros recibidos, realizo las distintas operaciones
 	
 	//ELIMINAR
 	if(isset($_GET['id_pelicula']) && !isset($_GET['inputTitulo'])){
@@ -125,6 +142,9 @@ generar_menu($menu_ppal,1);
 	<div id="encab">
 		<?=$menu_ppal?>
 	</div>
+
+
+	<?php echo $error; ?>
 
 	<div class="container pt-1 no-border">
 		<div class="card card-container pt-4 no-border">
