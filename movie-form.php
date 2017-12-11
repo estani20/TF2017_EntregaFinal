@@ -67,7 +67,7 @@ if (isset($_GET['id_pelicula'])){
 				<textarea type="text" name="inputSinopsis" class="form-control pb-2" required autofocus><?php echo (isset($sinopsis))?$sinopsis:'';?></textarea>
 				<label>Género</label>
 				<p>(Mantener CTRL para seleccionar más de un género)</p>
-				<select class="form-control" name="generos[]" multiple="multiple">
+				<select class="form-control" name="generos[]" multiple="multiple" required>
 					<?php
 
 						$sql = "SELECT * FROM genero g";
@@ -87,7 +87,7 @@ if (isset($_GET['id_pelicula'])){
 					?>
 				</select>
 				<label>Póster</label>
-				<input type="file" name="inputPoster" class="form-control" value="<?php echo (isset($imagen_poster))?$imagen_poster: '';?>"  autofocus>
+				<input type="file" name="inputPoster" class="form-control" value="<?php echo (isset($imagen_poster))?$imagen_poster: 'default.png';?>"  autofocus>
 
 				<br>
 				<button class="btn btn-lg btn-primary btn-block btn-submit" type="submit"><?php echo $actionTitle ?> película</button>

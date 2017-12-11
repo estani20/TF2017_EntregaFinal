@@ -37,7 +37,7 @@
       	$sql->bindParam(":nuevoGenero",$nuevoGenero,PDO::PARAM_STR);
       	$sql->execute();
       	$rs = $sql->fetch();
-	}
+		}
 
 
 	//EDITAR
@@ -45,8 +45,8 @@
 		$id = $_POST['id_genero'];
 		$nuevoGenero = $_POST['new_genero'];
 
-		$sql = "UPDATE genero SET nombre_genero = :nuevoGenero WHERE id_genero = :id';";
-      
+		$sql = "UPDATE genero SET nombre_genero = :nuevoGenero WHERE id_genero = :id;";
+      	
       	$sql = $db->prepare($sql);
       	$sql->bindParam(":id",$id,PDO::PARAM_STR);
       	$sql->bindParam(":nuevoGenero",$nuevoGenero,PDO::PARAM_STR);
@@ -60,7 +60,7 @@
 	
 		//$rs = $mysqli->query("DELETE FROM genero WHERE id_genero = '".$id."';");
 
-		$sql = "DELETE FROM genero WHERE id_genero = :id';";
+		$sql = "DELETE FROM genero WHERE id_genero = :id;";
       
       	$sql = $db->prepare($sql);
       	$sql->bindParam(":id",$id,PDO::PARAM_STR);
@@ -114,7 +114,7 @@
 
 			<?php 
 				// Si el usuario logueado es admin, habilito el botón para acceder a Agregar películas
-				if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'admin'){
+				if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
 	        		echo '<a href="genre-form.php" class="btn btn-success mb-2 no-print">Agregar género</a>';
 				} 
 			?>
@@ -146,7 +146,7 @@
 	
 						$action = $actionCommon;
 	
-						if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'admin'){
+						if(isset($_SESSION['usuario']) && $_SESSION['usuario']['nombre_usuario'] == 'admin'){
 							$action = $actionAdmin;
 						}
 	

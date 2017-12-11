@@ -154,54 +154,60 @@ generar_menu($menu_ppal,1);
 					$sql = $db->prepare($sql);
 					$sql->execute();
 					$count = $sql->rowCount();
+
+					if($count >= 1){
 					
-					while($rs = $sql->fetch()) {
-						// Template para la columna de acción del usuario admin
-						$actionAdmin = "<a href='movie-form.php?id_pelicula={$rs['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
-								<a href='index.php?id_pelicula={$rs['id_pelicula']}'  onclick='return checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
+						while($rs = $sql->fetch()) {
+							// Template para la columna de acción del usuario admin
+							$actionAdmin = "<a href='movie-form.php?id_pelicula={$rs['id_pelicula']}' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a> 
+									<a href='index.php?id_pelicula={$rs['id_pelicula']}'  onclick='return checkDelete()' class='btn btn-danger btn-sm'><i class='fa fa-trash'></span></i>";
 
-						// Template para la columna de acción del usuario común
-						$actionUser = "<div><form class='form-submit' method='post' action='index.php'><input type='hidden' name='inputIdCalif' value={$rs['id_pelicula']}></input><input type='number' name='inputCalif' min='1' max='5' size='1' value='3' required/><i class='fa fa-star'></span></i><button type='submit' class='btn btn-lg btn-primary btn-block btn-submit mt-2'>Calificar</button></form></div>";
-						$actionToDo = "";
+							// Template para la columna de acción del usuario común
+							$actionUser = "<div><form class='form-submit' method='post' action='index.php'><input type='hidden' name='inputIdCalif' value={$rs['id_pelicula']}></input><input type='number' name='inputCalif' min='1' max='5' size='1' value='3' required/><i class='fa fa-star'></span></i><button type='submit' class='btn btn-lg btn-primary btn-block btn-submit mt-2'>Calificar</button></form></div>";
+							$actionToDo = "";
 
-						if(isset($_SESSION['usuario'])){
-							if($_SESSION['usuario']['nombre_usuario'] == 'admin'){
-	        					$actionToDo = $actionAdmin;
-							} else {
-								$actionToDo = $actionUser;
-							}
+							if(isset($_SESSION['usuario'])){
+								if($_SESSION['usuario']['nombre_usuario'] == 'admin'){
+	        						$actionToDo = $actionAdmin;
+								} else {
+									$actionToDo = $actionUser;
+								}
 
-	 					} else {
-	 						// Si no hay usuario logueado, no se puede realizar ninguna acción
-	 						$actionToDo = "Debes iniciar sesión<br> para realizar acciones";
-	 					}
+	 						} else {
+	 							// Si no hay usuario logueado, no se puede realizar ninguna acción
+	 							$actionToDo = "Debes iniciar sesión<br> para realizar acciones";
+	 						}
 
-						echo "
-						<tr>
-							<td><h5>{$rs['nombre_pelicula']}</h5><img src='res/img/posters/{$rs['imagen_poster']}' class='img-thumbnail'></td>
-							<td>";
-							$id = $rs['id_pelicula'];
-							$sqlgen = "SELECT * FROM genero JOIN tiene ON genero.id_genero = tiene.id_genero WHERE id_pelicula = :id";
-							$sqlgen = $db->prepare($sqlgen);
-							$sqlgen->bindParam(":id",$id,PDO::PARAM_STR);
-							$sqlgen->execute();
+							echo "
+							<tr>
+								<td><h5>{$rs['nombre_pelicula']}</h5><img src='res/img/posters/{$rs['imagen_poster']}' class='img-thumbnail'></td>
+								<td>";
+								$id = $rs['id_pelicula'];
+								$sqlgen = "SELECT * FROM genero JOIN tiene ON genero.id_genero = tiene.id_genero WHERE id_pelicula = :id";
+								$sqlgen = $db->prepare($sqlgen);
+								$sqlgen->bindParam(":id",$id,PDO::PARAM_STR);
+								$sqlgen->execute();
+								$countgen = $sqlgen->rowCount();
 							
-							while ( $rsgen = $sqlgen->fetch()) {
-								echo "<p>{$rsgen['nombre_genero']}</p>";
-							}
-
-							echo "</td>";
-							$fecha = strtotime($rs['fecha_estreno']);
-							$fechaFormateada = date("d/m/Y",$fecha);
-							echo"
-							<td>{$fechaFormateada}</td>
-							<td>{$rs['tiempo_duracion']}</td>
-							<td>{$rs['sinopsis']}</td>
-							<td>{$rs['calificacion_promedio']} / 5</td>
-							<td>".$actionToDo."</td>
-						</tr>
-					";
+								if($countgen>=1){
+									while ( $rsgen = $sqlgen->fetch()) {
+										echo "<p>{$rsgen['nombre_genero']}</p>";
+									}
+								}
+								echo "</td>";
+								$fecha = strtotime($rs['fecha_estreno']);
+								$fechaFormateada = date("d/m/Y",$fecha);
+								echo"
+								<td>{$fechaFormateada}</td>
+								<td>{$rs['tiempo_duracion']}</td>
+								<td>{$rs['sinopsis']}</td>
+								<td>{$rs['calificacion_promedio']} / 5</td>
+								<td>".$actionToDo."</td>
+							</tr>
+							";
+						}
 					}
+					
 					?>
 				</tbody>
 			</table>
