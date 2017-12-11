@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
-require 'inc/conn.php';  #crea la conexión a la BD
+require 'inc/conexion.php';  #crea la conexión a la BD
 
 
 include_once("navbar.php"); 
@@ -17,20 +17,31 @@ generar_menu($menu_ppal,1);
 
 	//Si se cumple este condicional, estoy editando
 	if (isset($_GET['id_genero'])){
+
 		$actionTitle = 'Editar';
+		
 		$id = $_GET['id_genero'];
 
-		$rs = $mysqli->query("SELECT * FROM genero g WHERE g.id_genero = '".$id."';");
+		$sql = "SELECT * FROM genero g WHERE g.id_genero = :id;";
+      	
+      	$sql = $db->prepare($sql);
+      	$sql->bindParam(":id",$id,PDO::PARAM_STR);
+      	$sql->execute();
+      	$count = $sql->rowCount();
 
-		$rs = $rs->fetch_assoc();
-    	$nombre = $rs['nombre_genero'];
+      	if($count >=1){
+      	    $rs = $sql->fetch();
+      	    $nombre = $rs['nombre_genero'];
+      	}
 
 	} else{
 			$nombre = '';
 			$id = '';
 	} 
 
-
+$rs=null;
+$sql=null;
+$db=null;
 
 ?> 
 <html>

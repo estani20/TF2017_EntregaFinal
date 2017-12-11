@@ -2,15 +2,9 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	
 	
 6 - Validaciones	
-	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que se anumero, que tenga longitud valida)
+	- Validar los datos en PHP (que no tenga caracteres raros, que sea fecha valida, que sea numero, que tenga longitud valida)
 	
-    - $rs -- cada vez que se ejecuta una consulta, hay que verificar si esta vacio o no, no usarlo en forma directa.
-	- cuando no se utiliza mas, hay que cerrar el $rs
-  	- Ej. sin validar datos PHP
-		$n_poster = $_POST['inputPoster'];  no se pregunta si esta seteado, ni que clase de valor puede tener.
-		
-		
-    7 - Hacer reporte/consulta
+7 - Hacer reporte/consulta
 	Realizar una reporte de peliculas agrupadas por genero, que tenga subtotal de peliculas por genero y total de peliculas
 	filtro: por genero (select - todos los generos o uno en particular) y por duracion
 	orden : por calificacion o por titulo 
