@@ -15,7 +15,7 @@
 	
 	$n_generos = isset($_POST['generos'])?$_POST['generos']:'';
 	
-	$n_poster = isset($_POST['inputPoster'])?$_POST['inputPoster']:'default.png';
+	$n_poster = (isset($_POST['inputPoster']) && !empty($_POST['inputPoster']))?$_POST['inputPoster']:'default.png';
 
 	// Dependiendo de los parámetros recibidos, realizolas distintas operaciones
 	//AGREGAR
