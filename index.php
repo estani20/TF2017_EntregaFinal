@@ -180,7 +180,7 @@ generar_menu($menu_ppal,1);
 
 							echo "
 							<tr>
-								<td><h5>{$rs['nombre_pelicula']}</h5><img src='res/img/posters/{$rs['imagen_poster']}' class='img-thumbnail'></td>
+								<td><h5>{$rs['nombre_pelicula']}</h5><img src='res/img/posters/".$rs['imagen_poster']."' class='img-thumbnail'></td>
 								<td>";
 								$id = $rs['id_pelicula'];
 								$sqlgen = "SELECT * FROM genero JOIN tiene ON genero.id_genero = tiene.id_genero WHERE id_pelicula = :id";

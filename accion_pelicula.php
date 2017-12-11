@@ -1,42 +1,25 @@
 <?php 
 	require 'inc/conexion.php';
 
-	// Inicializo vacíos los parámetros
-	$id = '';
-	$n_titulo = '';
-	$n_fecha = '';
-	$n_duracion = 0;
-
 	// Seteo los valores a los atributos de la película dependiendo de los parámetros recibidos
-	if(isset($_POST['id_pelicula'])){
-		$id = $_POST['id_pelicula'];
-	}
-	if(isset($_POST['inputTiulo'])){
-		$n_titulo = $_POST['inputTitulo'];
-	}
-	if(isset($_POST['inputFecha'])){
-		$n_fecha = $_POST['inputFecha'];
-	}
-	if(isset($_POST['inputDuracion'])){
-		$n_duracion = $_POST['inputDuracion'];
-	}
-	if(isset($_POST['inputSinopsis'])){
-		$n_sinopsis = $_POST['inputSinopsis'];
-	}
-	if(isset($_POST['inputPoster'])){
-		$n_poster = $_POST['inputPoster'];
-	}
+	
+	$id = isset($_POST['id_pelicula'])?$_POST['id_pelicula']:'';
+
+	$n_titulo = isset($_POST['inputTitulo'])?$_POST['inputTitulo']:'';
+	
+	$n_fecha = isset($_POST['inputFecha'])?$_POST['inputFecha']:'';
+	
+	$n_duracion = isset($_POST['inputDuracion'])?$_POST['inputDuracion']:'';
+	
+	$n_sinopsis = isset($_POST['inputSinopsis'])?$_POST['inputSinopsis']:'';
+	
+	$n_generos = isset($_POST['generos'])?$_POST['generos']:'';
+	
+	$n_poster = isset($_POST['inputPoster'])?$_POST['inputPoster']:'default.png';
 
 	// Dependiendo de los parámetros recibidos, realizolas distintas operaciones
 	//AGREGAR
 	if(isset($_POST['action']) && $_POST['action'] == 'Agregar'){
-
-		$n_titulo = $_POST['inputTitulo'];
-		$n_fecha = $_POST['inputFecha'];
-		$n_duracion = $_POST['inputDuracion'];
-		$n_sinopsis = $_POST['inputSinopsis'];
-		$n_generos = isset($_POST['generos'])?$_POST['generos']:'';
-		$n_poster = 'res/img/posters/'.$_POST['inputPoster'];
 	
 		$sql = "SELECT * FROM pelicula p WHERE p.nombre_pelicula = :titulo;";
       
@@ -88,12 +71,6 @@
 
 	//EDITAR
 	if(isset($_POST['action']) && $_POST['action'] == 'Editar'){
-		$id = $_POST['id_pelicula'];
-		$n_titulo = $_POST['inputTitulo'];
-		$n_fecha = $_POST['inputFecha'];
-		$n_duracion = $_POST['inputDuracion'];
-		$n_sinopsis = $_POST['inputSinopsis'];
-		$n_poster = $_POST['inputPoster'];
 
 		$sql = "DELETE FROM tiene WHERE id_pelicula='$id'";
 			

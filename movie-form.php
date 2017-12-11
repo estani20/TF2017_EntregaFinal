@@ -58,9 +58,9 @@ if (isset($_GET['id_pelicula'])){
 				<input type="hidden" class="form-control" name="id_pelicula"  value="<?php echo $id ;?>" required autofocus>
 				<input type="hidden" class="form-control" name="action"  value="<?php echo $actionTitle ;?>">
 				<label>Título</label>
-				<input type="text" name="inputTitulo" class="form-control" placeholder="Título" value="<?php echo (isset($nombre))?$nombre:'';?>" required autofocus>
+				<input type="text" name="inputTitulo" class="form-control" placeholder="Título" value="<?php echo (isset($nombre))?$nombre:''; ?> "required autofocus>
 				<label>Fecha de estreno</label>
-				<input type="date" name="inputFecha" class="form-control" value="<?php echo (isset($fecha_estreno))?$fecha_estreno:'';?>" required autofocus>
+				<input type="date" name="inputFecha" class="form-control" value="<?php echo (isset($fecha_estreno)) ?$fecha_estreno:''; ?>" required autofocus>
 				<label>Tiempo de duración</label>
 				<input type="number" name="inputDuracion" class="form-control" value="<?php echo (isset($tiempo_duracion))?$tiempo_duracion: 0;?>" required autofocus>
 				<label>Sinópsis</label>
@@ -87,7 +87,7 @@ if (isset($_GET['id_pelicula'])){
 					?>
 				</select>
 				<label>Póster</label>
-				<input type="file" name="inputPoster" class="form-control" value="<?php echo (isset($imagen_poster))?$imagen_poster: 'default.png';?>"  autofocus>
+				<input type="file" name="inputPoster" class="form-control" value="<?php echo (isset($imagen_poster))?$imagen_poster: '';?>"  autofocus>
 
 				<br>
 				<button class="btn btn-lg btn-primary btn-block btn-submit" type="submit"><?php echo $actionTitle ?> película</button>
