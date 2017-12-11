@@ -9,26 +9,16 @@
 	generar_menu($menu_ppal,1);
 	generar_breadcrumbs($camino_nav,0,"Listado"); 
 
-
-
-	// Inicializo vacíos los parámetros
-	$id = '';
-	$nuevoGenero = '';
 	$error = '';
 
-	// Seteo los valores a los atributos del género dependiendo de los parámetros recibidos
-	if(isset($_POST['id_genero'])){
-		$id = $_POST['id_genero'];
-	}
+	$id = (isset($_POST['id_genero']) && !empty($_POST['id_genero']))?$_POST['id_genero']:'';
+	
+	$nuevoGenero = (isset($_POST['new_genero']) && !empty($_POST['new_genero']))?$_POST['new_genero']:'';
+	
+	// Dependiendo de los parámetros recibidos, realizo las distintas operaciones
 
-	if(isset($_POST['new_genero'])){
-		$nuevoGenero = $_POST['new_genero'];
-	}
-
-		// Dependiendo de los parámetros recibidos, realizo las distintas operaciones
-
-		//AGREGAR
-		if(($nuevoGenero != '') && ($id == '')){
+	//AGREGAR
+	if(($nuevoGenero != '') && ($id == '')){
 	
 		
 		$sql = "INSERT INTO genero SET nombre_genero = :nuevoGenero;";
@@ -36,14 +26,13 @@
       	$sql = $db->prepare($sql);
       	$sql->bindParam(":nuevoGenero",$nuevoGenero,PDO::PARAM_STR);
       	$sql->execute();
-      	$rs = $sql->fetch();
-		}
+    }
 
 
 	//EDITAR
 	if(isset($_POST['id_genero']) && isset($_POST['new_genero'])){
-		$id = $_POST['id_genero'];
-		$nuevoGenero = $_POST['new_genero'];
+		$id = (isset($_POST['id_genero']) && !empty($_POST['id_genero']))?$_POST['id_genero']:'';
+		$nuevoGenero = (isset($_POST['new_genero']) && !empty($_POST['new_genero']))?$_POST['new_genero']:'';
 
 		$sql = "UPDATE genero SET nombre_genero = :nuevoGenero WHERE id_genero = :id;";
       	
@@ -51,14 +40,11 @@
       	$sql->bindParam(":id",$id,PDO::PARAM_STR);
       	$sql->bindParam(":nuevoGenero",$nuevoGenero,PDO::PARAM_STR);
       	$sql->execute();
-      	$rs = $sql->fetch();
-	}
+    }
 
 	//ELIMINAR
 	else if(isset($_GET['id_genero'])){
 		$id = $_GET['id_genero'];
-	
-		//$rs = $mysqli->query("DELETE FROM genero WHERE id_genero = '".$id."';");
 
 		$sql = "DELETE FROM genero WHERE id_genero = :id;";
       
@@ -73,10 +59,7 @@
 						<span>No se puede eliminar un género que tenga películas asociadas</span>
 					</div>';
    		}
-
 	}
-
-
 ?>
 
 <head>

@@ -75,6 +75,7 @@ if (isset($_GET['id_pelicula'])){
       					$sql = $db->prepare($sql);
       					$sql->execute();
 
+      					//Utilizamos directamente el result set porque mostramos todos los generos
 						while($rs = $sql->fetch()) {
 							
 							if($rs['id_genero'] == $id_genero){
