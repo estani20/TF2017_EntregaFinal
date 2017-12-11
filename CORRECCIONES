@@ -15,4 +15,3 @@ Falta bastante para que este completo, la correcion la pueden entrgar el fin de 
 	filtro: por genero (select - todos los generos o uno en particular) y por duracion
 	orden : por calificacion o por titulo 
 	exportar a excel- datos sin agrupar y sin totales
-	print -  vista de impresion, con diferente estilo (el mismo archivo, modificado por estilos cuando se imprime)
